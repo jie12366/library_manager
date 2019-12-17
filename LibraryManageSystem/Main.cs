@@ -61,7 +61,7 @@ namespace LibraryManageSystem
         {
             Users u=new Users();
             DataSet ds=null;
-            u.Name=txtSearch.Text.Trim();
+            u.Name= "%" + txtSearch.Text.Trim() + "%";
             if (txtNumInfo.Text.Trim() == "")
             {
                 ds = DBOperate.readDB("select UserAccount 账号,UserName 姓名,UserMobile 手机号 from UserInfo where UserType='读者'");
@@ -69,7 +69,7 @@ namespace LibraryManageSystem
             }
             else
             {
-                ds = DBOperate.readDB("select UserAccount 账号,UserName 姓名,UserMobile 手机号 from UserInfo where UserName = '" + u.Name + "' and UserType='读者'");
+                ds = DBOperate.readDB("select UserAccount 账号,UserName 姓名,UserMobile 手机号 from UserInfo where UserName like '" + u.Name + "' and UserType='读者'");
                 dataGridView1.DataSource = ds.Tables[0];
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -213,52 +213,59 @@ namespace LibraryManageSystem
         string upUserStrBook;
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Book b = new Book();
-            b.ISBN = txtISBN.Text.Trim();
-            b.Name = txtBookName.Text.Trim();
-            b.Style = comboBox1.Text.Trim();
-            b.Price = Convert.ToSingle(txtPrice.Text.Trim());
-            b.Press = txtPress.Text.Trim();
-            b.Author = txtAuthor.Text.Trim();
-            b.EnterTime = dateTimePicker1.Value.ToShortDateString();
-            if (DBOperate.writeDB("insert into Books values('" + b.ISBN + "','" + b.Name + "','" + b.Style + "','" + b.Price + "','" + b.Press + "','" + b.Author + "','" + b.EnterTime + "','否')") > 0)
-            { ///把选择的图片上传给阿里云oss
-                if (txtName.Text.Trim() != null)
-                {
-                    Mac mac = new Mac("1VC_A1ZMeAe3PYJoEXPPVWlHbHLdJ9gTH8hZY0WC", "Eg0e8u3qlHWAH_GdASR1xXdkzYbEb-v85PyNWKhX");
-                    // 上传文件名 
-                    string key = @"books/" + txtISBN.Text.Trim() + ".jpg";
-                    // 本地文件路径
-                    string filePath = @"" + upUserStrBook + "";
-                    // 存储空间名
-                    string Bucket = "windsearcher";
+            if (txtISBN.Text == "" || txtBookName.Text == "" || comboBox1.Text == "" || txtPrice.Text == "" || txtPress.Text == "" || txtAuthor.Text == "")
+            {
+                MessageBox.Show("信息不能为空!");
+            }
+            else
+            {
+                Book b = new Book();
+                b.ISBN = txtISBN.Text.Trim();
+                b.Name = txtBookName.Text.Trim();
+                b.Style = comboBox1.Text.Trim();
+                b.Price = Convert.ToSingle(txtPrice.Text.Trim());
+                b.Press = txtPress.Text.Trim();
+                b.Author = txtAuthor.Text.Trim();
+                b.EnterTime = dateTimePicker1.Value.ToShortDateString();
+                if (DBOperate.writeDB("insert into Books values('" + b.ISBN + "','" + b.Name + "','" + b.Style + "','" + b.Price + "','" + b.Press + "','" + b.Author + "','" + b.EnterTime + "','否')") > 0)
+                { ///把选择的图片上传给阿里云oss
+                    if (txtName.Text.Trim() != null)
+                    {
+                        Mac mac = new Mac("1VC_A1ZMeAe3PYJoEXPPVWlHbHLdJ9gTH8hZY0WC", "Eg0e8u3qlHWAH_GdASR1xXdkzYbEb-v85PyNWKhX");
+                        // 上传文件名 
+                        string key = @"books/" + txtISBN.Text.Trim() + ".jpg";
+                        // 本地文件路径
+                        string filePath = @"" + upUserStrBook + "";
+                        // 存储空间名
+                        string Bucket = "windsearcher";
 
-                    PutPolicy putPolicy = new PutPolicy();
-                    // 设置要上传的目标空间
-                    putPolicy.Scope = Bucket;
-                    // 上传策略的过期时间(单位:秒)
-                    putPolicy.SetExpires(3600);
-                    // 文件上传完毕后，在多少天后自动被删除
-                    putPolicy.DeleteAfterDays = 1;
-                    // 生成上传token
-                    string token = Auth.CreateUploadToken(mac, putPolicy.ToJsonString());
+                        PutPolicy putPolicy = new PutPolicy();
+                        // 设置要上传的目标空间
+                        putPolicy.Scope = Bucket;
+                        // 上传策略的过期时间(单位:秒)
+                        putPolicy.SetExpires(3600);
+                        // 文件上传完毕后，在多少天后自动被删除
+                        putPolicy.DeleteAfterDays = 1;
+                        // 生成上传token
+                        string token = Auth.CreateUploadToken(mac, putPolicy.ToJsonString());
 
-                    Config config = new Config();
-                    // 设置上传区域
-                    config.Zone = Zone.ZONE_CN_South;
-                    // 设置 http 或者 https 上传
-                    config.UseHttps = true;
-                    config.UseCdnDomains = true;
-                    config.ChunkSize = ChunkUnit.U512K;
-                    // 表单上传
-                    FormUploader target = new FormUploader(config);
-                    HttpResult result = target.UploadFile(filePath, key, token, null);
-                    Console.WriteLine("form upload result: " + result.ToString());
-                    MessageBox.Show("保存成功!");
-                }
-                else
-                {
-                    MessageBox.Show("保存失败!");
+                        Config config = new Config();
+                        // 设置上传区域
+                        config.Zone = Zone.ZONE_CN_South;
+                        // 设置 http 或者 https 上传
+                        config.UseHttps = true;
+                        config.UseCdnDomains = true;
+                        config.ChunkSize = ChunkUnit.U512K;
+                        // 表单上传
+                        FormUploader target = new FormUploader(config);
+                        HttpResult result = target.UploadFile(filePath, key, token, null);
+                        Console.WriteLine("form upload result: " + result.ToString());
+                        MessageBox.Show("保存成功!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("保存失败!");
+                    }
                 }
             }
         }
@@ -307,6 +314,7 @@ namespace LibraryManageSystem
             b.ISBN = txtBookISBN1.Text.Trim();
             b.Name = txtBName1.Text.Trim();
             DataSet ds = null;
+            string search = "%" + txtBSearch.Text.Trim() + "%";
             if (txtBSearch.Text.Trim()=="")
             {
                 ds = DBOperate.readDB("select ISBN,BookName 书籍名称,BookStyle 书籍类型,Price 价格,Press 出版社,Author 作者,EnterTime 购入时间,IsBorrow 是否借出 from Books");
@@ -314,12 +322,12 @@ namespace LibraryManageSystem
             }
             else if (cboBook.Text == "ISBN")
             {
-                ds = DBOperate.readDB("select ISBN,BookName 书籍名称,BookStyle 书籍类型,Price 价格,Press 出版社,Author 作者,EnterTime 购入时间,IsBorrow 是否借出 from Books where ISBN = '"+txtBSearch.Text.Trim()+"'");
+                ds = DBOperate.readDB("select ISBN,BookName 书籍名称,BookStyle 书籍类型,Price 价格,Press 出版社,Author 作者,EnterTime 购入时间,IsBorrow 是否借出 from Books where ISBN like '" + search + "'");
                 dataGridView2.DataSource = ds.Tables[0];
             }
             else if (cboBook.Text == "图书名称")
             {
-                ds = DBOperate.readDB("select ISBN,BookName 书籍名称,BookStyle 书籍类型,Price 价格,Press 出版社,Author 作者,EnterTime 购入时间,IsBorrow 是否借出 from Books where BookName= '" + txtBSearch.Text.Trim() + "'");
+                ds = DBOperate.readDB("select ISBN,BookName 书籍名称,BookStyle 书籍类型,Price 价格,Press 出版社,Author 作者,EnterTime 购入时间,IsBorrow 是否借出 from Books where BookName like '" + search + "'");
                 dataGridView2.DataSource = ds.Tables[0];
             }
         }
@@ -397,7 +405,7 @@ namespace LibraryManageSystem
         private void buttonUp_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd1 = new OpenFileDialog();
-            ofd1.Filter = "图片文件（*.jpg）|*.jpg";
+            ofd1.Filter = "图片文件|*.jpg;*.png;";
             if (ofd1.ShowDialog() == DialogResult.OK)
             {
                 upUserStr = ofd1.FileName;
@@ -491,7 +499,7 @@ namespace LibraryManageSystem
         {
             Users u = new Users();
             DataSet ds = null;
-            u.Name = txtGSearch.Text.Trim();
+            u.Name = "%" + txtGSearch.Text.Trim() + "%";
             if (txtGAccount.Text.Trim() == "")
             {
                 ds = DBOperate.readDB("select UserAccount 账号,UserName 姓名,UserMobile 手机号 from UserInfo where UserType='管理员'");
@@ -558,7 +566,7 @@ namespace LibraryManageSystem
         private void button1_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog ofd1 = new OpenFileDialog();
-            ofd1.Filter = "图片文件（*.jpg）|*.jpg |*.png";
+            ofd1.Filter = "图片文件|*.jpg;*.png;";
             if (ofd1.ShowDialog() == DialogResult.OK)
             {
                 upUserStrBook = ofd1.FileName;

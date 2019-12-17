@@ -727,7 +727,7 @@
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(80, 18);
             this.label32.TabIndex = 16;
-            this.label32.Text = "是否可借";
+            this.label32.Text = "是否借出";
             this.label32.Click += new System.EventHandler(this.label32_Click);
             // 
             // label31

@@ -13,6 +13,7 @@ namespace LibraryManageSystem
     public partial class ReaderMain : Form
     {
         string s;
+        string bookName;
         public string S //属性用于接收登陆用户
         {
             get { return s; }
@@ -133,7 +134,7 @@ namespace LibraryManageSystem
             Book b = new Book();
             b.Style = textBox2.Text.Trim();
             b.Author = textBox2.Text.Trim();
-            b.Name = textBox2.Text.Trim();
+            b.Name = "%" + textBox2.Text.Trim() + "%";
             ds = DBOperate.readDB("select ISBN,BookName 书名,BookStyle 类型,Price 价格,Press 出版社,Author 作者,EnterTime 入库时间,IsBorrow 是否借出 from Books where BookName like '" + b.Name + "'");
             dataGridView2.DataSource = ds.Tables[0];
             if(textBox2.Text.Trim()=="")
@@ -148,7 +149,9 @@ namespace LibraryManageSystem
                 }
                 else
                 {
-                    string ISBN = ds.Tables[0].Rows[0]["ISBN"].ToString();//获取选中行的ISBN
+                    int index = dataGridView2.CurrentRow.Index; //获取选中行的行号
+                    string ISBN = dataGridView2.Rows[index].Cells[0].Value.ToString();//获取选中行的ISBN
+                    bookName = dataGridView2.Rows[index].Cells[1].Value.ToString(); // 获取选中行的书名
                     string webpic = "http://cdn2.jie12366.xyz/books/" + ISBN + ".jpg";
                     pictureBorrow.ImageLocation = webpic;
                     dataGridView2.DataSource = ds.Tables[0];
@@ -157,11 +160,20 @@ namespace LibraryManageSystem
 
         }
 
+        private void btnSearchPic_Click2(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = dataGridView2.CurrentRow.Index; //获取选中行的行号
+            string ISBN = dataGridView2.Rows[index].Cells[0].Value.ToString();//获取选中行的ISBN
+            bookName = dataGridView2.Rows[index].Cells[1].Value.ToString(); // 获取选中行的书名
+            string webpic = "http://cdn2.jie12366.xyz/books/" + ISBN + ".jpg";
+            pictureBorrow.ImageLocation = webpic;
+        }
+
         private void btnBorrow_Click(object sender, EventArgs e)//借书的按钮的事件
         {
             Book br = new Book();
-            br.Name = textBox2.Text.Trim();
-            DataSet ds = DBOperate.readDB("select * from Books where BookName='" + textBox2.Text.Trim() + "'");
+            br.Name = bookName;
+            DataSet ds = DBOperate.readDB("select * from Books where BookName ='" + br.Name + "'");
             if (dataGridView2.RowCount>=1)
             {
                 br.IsBorrow = ds.Tables[0].Rows[0][7].ToString();
@@ -252,5 +264,9 @@ namespace LibraryManageSystem
 
         }
 
+        private void toolStripStatusLabel4_Click(object sender, EventArgs e)
+        {
+
         }
+    }
     }

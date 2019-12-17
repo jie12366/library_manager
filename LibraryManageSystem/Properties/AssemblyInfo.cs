@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("图书馆管理系统")]
-[assembly: AssemblyDescription("本程序使用到的开放技术及平台：阿里云短信推送，阿里云邮件推送，OSS对象存储，百度AI，阿里云ECS用作远程SQL数据库,腾讯云开发者平台，坚果云同步，git等、")]
+[assembly: AssemblyTitle("图书管理系统")]
+[assembly: AssemblyDescription("该图书管理系统可实现用户登录注册、查询书籍、借书还书，管理员可管理用户、管理书籍(增删改查)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("小组成员：赵志鹏，王鹏，李一帆，郭森")]
-[assembly: AssemblyProduct("LibraryManageSystem")]
-[assembly: AssemblyCopyright("c#实训4组")]
+[assembly: AssemblyCompany("小组成员：熊义杰、秦旭洋")]
+[assembly: AssemblyProduct("项目名称：图书管理系统")]
+[assembly: AssemblyCopyright("c#实训四班36组所有")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // 可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: 
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.2")]
+[assembly: AssemblyFileVersion("1.1.2")]
