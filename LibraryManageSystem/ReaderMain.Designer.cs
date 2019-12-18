@@ -44,7 +44,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pictureSearch = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label11 = new System.Windows.Forms.Label();
             this.btnSelectBooks = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -54,7 +53,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pictureBorrow = new System.Windows.Forms.PictureBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnSearch2 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnBorrow = new System.Windows.Forms.Button();
@@ -73,7 +71,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -221,7 +218,6 @@
             // 
             this.tabPage2.Controls.Add(this.pictureSearch);
             this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.btnSelectBooks);
             this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.label9);
@@ -265,17 +261,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1124, 296);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.btnSearchPic_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(224, 196);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(188, 25);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "搜索出来的信息：";
             // 
             // btnSelectBooks
             // 
@@ -338,7 +323,6 @@
             // 
             this.tabPage3.Controls.Add(this.pictureBorrow);
             this.tabPage3.Controls.Add(this.dataGridView2);
-            this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Controls.Add(this.btnSearch2);
             this.tabPage3.Controls.Add(this.dateTimePicker1);
             this.tabPage3.Controls.Add(this.btnBorrow);
@@ -383,16 +367,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(1130, 237);
             this.dataGridView2.TabIndex = 40;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.btnSearchPic_Click2);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(128, 82);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(386, 18);
-            this.label8.TabIndex = 39;
-            this.label8.Text = "请输入完整的书名，如不知道请先去查询书籍！";
             // 
             // btnSearch2
             // 
@@ -493,6 +467,7 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowTemplate.Height = 30;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(1149, 184);
             this.dataGridView3.TabIndex = 41;
             // 
@@ -539,8 +514,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel3,
-            this.toolStripStatusLabel2,
-            this.toolStripStatusLabel4});
+            this.toolStripStatusLabel2});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.statusStrip1.Location = new System.Drawing.Point(0, 627);
             this.statusStrip1.Name = "statusStrip1";
@@ -568,13 +542,6 @@
             this.toolStripStatusLabel2.Spring = true;
             this.toolStripStatusLabel2.Text = "关于";
             this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
-            // 
-            // toolStripStatusLabel4
-            // 
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(195, 24);
-            this.toolStripStatusLabel4.Text = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Click += new System.EventHandler(this.toolStripStatusLabel4_Click);
             // 
             // timer1
             // 
@@ -638,7 +605,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnSelectBooks;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -650,7 +616,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblNum;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnSearch2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnBorrow;
@@ -668,6 +633,5 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.Button btnZX;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
     }
 }

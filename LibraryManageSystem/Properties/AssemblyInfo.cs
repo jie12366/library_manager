@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("图书管理系统")]
-[assembly: AssemblyDescription("该图书管理系统可实现用户登录注册、查询书籍、借书还书，管理员可管理用户、管理书籍(增删改查)")]
+[assembly: AssemblyDescription("该图书管理系统可实现用户登录注册、查询书籍、借书还书，管理员可管理用户、管理书籍(增删改查)。    使用的技术和服务：C#、WinForm、MySQL、七牛云OSS、榛子云短信")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("小组成员：熊义杰、秦旭洋")]
 [assembly: AssemblyProduct("项目名称：图书管理系统")]

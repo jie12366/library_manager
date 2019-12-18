@@ -50,7 +50,7 @@ namespace LibraryManageSystem
         string upUserStr;//设置一个用于接收上传图片路径的字符串
         private void btnUp_Click(object sender, EventArgs e)
         {
-            Regex account = new Regex(@"^[a-zA-Z][a-zA-Z0-9]{6,14}$");
+            Regex account = new Regex(@"^[a-zA-Z][a-zA-Z0-9]{5,14}$");
             Regex passWord = new Regex(@"^[a-zA-Z0-9]{4,10}$");
             Regex name = new Regex(@"^[\u4e00-\u9fa5]{2,}$");
             Regex tel = new Regex(@"^0?(13|14|15|17|18|19)[0-9]{9}$");

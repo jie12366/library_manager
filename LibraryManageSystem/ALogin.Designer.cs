@@ -33,6 +33,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel0 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -77,6 +78,21 @@
             this.linkLabel2.Text = "重置密码";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
+            // linkLabel0
+            // 
+            this.linkLabel0.ActiveLinkColor = System.Drawing.Color.OrangeRed;
+            this.linkLabel0.AutoSize = true;
+            this.linkLabel0.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.linkLabel0.LinkColor = System.Drawing.Color.DarkKhaki;
+            this.linkLabel0.Location = new System.Drawing.Point(624, 494);
+            this.linkLabel0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel0.Name = "linkLabel0";
+            this.linkLabel0.Size = new System.Drawing.Size(80, 18);
+            this.linkLabel0.TabIndex = 5;
+            this.linkLabel0.TabStop = true;
+            this.linkLabel0.Text = "用户登录";
+            this.linkLabel0.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel0_LinkClicked);
+            // 
             // ALogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -85,6 +101,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1178, 664);
+            this.Controls.Add(this.linkLabel0);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.btnLogin);
@@ -109,8 +126,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.LinkLabel linkLabel2;
-
-
-
+        private System.Windows.Forms.LinkLabel linkLabel0;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -208,22 +209,29 @@ namespace LibraryManageSystem
         private void btnReturn_Click(object sender, EventArgs e)//还书按钮事件
         {
             Book br = new Book();
-            br.Name = cmbReturn.SelectedItem.ToString();
-            DataSet ds = DBOperate.readDB("select * from BRBooks INNER JOIN Books on BRBooks.ISBN=Books.ISBN where BookName='" +br.Name+ "'");
-            if (ds.Tables[0].Rows.Count>0)
+            if (cmbReturn.SelectedItem == null)
             {
-               // DBOperate.writeDB("update Books set IsBorrow='否' where ISBN='" + br.ISBN + "'");
-                DBOperate.writeDB("update Books set IsBorrow='否' where ISBN=( select ISBN from(select ISBN from Books where BookName = '" + br.Name + "') as a)");
-                DBOperate.writeDB("delete from BRBooks where ISBN=(select ISBN from(select ISBN from Books where BookName =  '" + br.Name + "') as a)");
-                cmbReturn.Items.Remove(cmbReturn.SelectedItem);//移除当前选中项
-                cmbReturn.Text = "";
-                 MessageBox.Show("归还成功");
-                 DataSet dd = DBOperate.readDB("select * from BRBooks INNER JOIN Books on BRBooks.ISBN=Books.ISBN where BookName='" + br.Name + "'");
-                 dataGridView3.DataSource = dd.Tables[0];
-             }
+                MessageBox.Show("请选择你要还的书");
+            }
             else
             {
-                MessageBox.Show("请选择你借阅的书");
+                br.Name = cmbReturn.SelectedItem.ToString();
+                DataSet ds = DBOperate.readDB("select * from BRBooks INNER JOIN Books on BRBooks.ISBN=Books.ISBN where BookName='" + br.Name + "'");
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    // DBOperate.writeDB("update Books set IsBorrow='否' where ISBN='" + br.ISBN + "'");
+                    DBOperate.writeDB("update Books set IsBorrow='否' where ISBN=( select ISBN from(select ISBN from Books where BookName = '" + br.Name + "') as a)");
+                    DBOperate.writeDB("delete from BRBooks where ISBN=(select ISBN from(select ISBN from Books where BookName =  '" + br.Name + "') as a)");
+                    cmbReturn.Items.Remove(cmbReturn.SelectedItem);//移除当前选中项
+                    cmbReturn.Text = "";
+                    MessageBox.Show("归还成功");
+                    DataSet dd = DBOperate.readDB("select Books.BookName 书名,Books.ISBN 书号,Books.BookStyle 类型,BorrowTime 借出时间,ReturnTime 应归还时间 from BRBooks INNER JOIN Books  on BRBooks.ISBN=Books.ISBN where BRBooks.UserNum='" + s + "'");
+                    dataGridView3.DataSource = dd.Tables[0];
+                }
+                else
+                {
+                    MessageBox.Show("请选择你借阅的书");
+                }
             }
             }
 
@@ -259,12 +267,30 @@ namespace LibraryManageSystem
             this.Close();
         }
 
+        // 监听窗体的关闭按钮，点击关闭按钮，立即退出进程
+        protected override void WndProc(ref Message msg)
+        {
+            //Windows系统消息，winuser.h文件中有WM_...的定义
+            //十六进制数字，0x是前导符后面是真正的数字
+            const int WM_SYSCOMMAND = 0x0112;
+            //winuser.h文件中有SC_...的定义
+            const int SC_CLOSE = 0xF060;
+
+            if (msg.Msg == WM_SYSCOMMAND && ((int)msg.WParam == SC_CLOSE))
+            {
+                // 点击winform右上关闭按钮
+                // 退出进程
+                System.Environment.Exit(0);
+            }
+            base.WndProc(ref msg);
+        }
+
         private void pictureUser_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void toolStripStatusLabel4_Click(object sender, EventArgs e)
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

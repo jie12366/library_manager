@@ -109,6 +109,13 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "手机号 ";
             // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 23);
+            this.label5.TabIndex = 84;
+            // 
             // BtnClear
             // 
             this.BtnClear.Location = new System.Drawing.Point(655, 397);
@@ -135,6 +142,7 @@
             this.textPass2.Location = new System.Drawing.Point(544, 142);
             this.textPass2.Margin = new System.Windows.Forms.Padding(4);
             this.textPass2.Name = "textPass2";
+            this.textPass2.PasswordChar = '*';
             this.textPass2.Size = new System.Drawing.Size(265, 28);
             this.textPass2.TabIndex = 6;
             // 
@@ -220,6 +228,7 @@
             // 
             this.txtPass.Location = new System.Drawing.Point(544, 101);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(265, 28);
             this.txtPass.TabIndex = 54;
             this.txtPass.WatermarkText = "字母和数字(4-10位)";

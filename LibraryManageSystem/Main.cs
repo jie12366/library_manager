@@ -588,6 +588,24 @@ namespace LibraryManageSystem
             this.Close();
         }
 
+        // 监听窗体的关闭按钮，点击关闭按钮，立即退出进程
+        protected override void WndProc(ref Message msg)
+        {
+            //Windows系统消息，winuser.h文件中有WM_...的定义
+            //十六进制数字，0x是前导符后面是真正的数字
+            const int WM_SYSCOMMAND = 0x0112;
+            //winuser.h文件中有SC_...的定义
+            const int SC_CLOSE = 0xF060;
+
+            if (msg.Msg == WM_SYSCOMMAND && ((int)msg.WParam == SC_CLOSE))
+            {
+                // 点击winform右上关闭按钮
+                // 退出进程并把所有线程关闭
+                System.Environment.Exit(0);
+            }
+            base.WndProc(ref msg);
+        }
+
         private void btnAUp_Click(object sender, EventArgs e)
         {
 
