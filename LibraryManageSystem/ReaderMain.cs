@@ -20,8 +20,8 @@ namespace LibraryManageSystem
             get { return s; }
             set { s = value; }
         }
-        public 
-            
+        public
+
             ReaderMain()
         {
             InitializeComponent();
@@ -40,13 +40,13 @@ namespace LibraryManageSystem
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void tabControl1_Click(object sender, EventArgs e)//更改个人信息时的事件
         {
             Login l = new Login();
-            DataSet ds = DBOperate.readDB("select * from UserInfo where UserAccount='"+s+"'");
+            DataSet ds = DBOperate.readDB("select * from UserInfo where UserAccount='" + s + "'");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 lblNum.Text = (ds.Tables[0].Rows[0][0]).ToString();
@@ -88,7 +88,7 @@ namespace LibraryManageSystem
             u.Account = lblNum.Text;
             u.Name = txtName.Text.Trim();
             u.Mobile = txtMobile.Text.Trim();
-            if (DBOperate.writeDB("update UserInfo set UserName='" + u.Name + "',UserMobile='" + u.Mobile +  "' where UserAccount='"+u.Account+"'") > 0)
+            if (DBOperate.writeDB("update UserInfo set UserName='" + u.Name + "',UserMobile='" + u.Mobile + "' where UserAccount='" + u.Account + "'") > 0)
             {
                 MessageBox.Show("保存成功！");
             }
@@ -97,17 +97,17 @@ namespace LibraryManageSystem
                 MessageBox.Show("保存失败！");
             }
         }
-        int index ;//定义下面用于接收是选中的第几行
+        int index;//定义下面用于接收是选中的第几行
         private void btnSearch_Click(object sender, EventArgs e)//按类型或者作者查书的事件
         {
             DataSet ds = null;
-            Book b=new Book();
+            Book b = new Book();
             b.Style = txtSearch.Text.Trim();
             b.Author = txtSearch.Text.Trim();
             b.Name = txtSearch.Text.Trim();
             if (comboBox1.Text == "类型")
             {
-                ds = DBOperate.readDB("select ISBN,BookName 书名,BookStyle 类型,Price 价格,Press 出版社,Author 作者,EnterTime 入库时间,IsBorrow 是否借出 from Books where BookStyle like '%"+b.Style+"%'");
+                ds = DBOperate.readDB("select ISBN,BookName 书名,BookStyle 类型,Price 价格,Press 出版社,Author 作者,EnterTime 入库时间,IsBorrow 是否借出 from Books where BookStyle like '%" + b.Style + "%'");
                 dataGridView1.DataSource = ds.Tables[0];
             }
             else if (comboBox1.Text == "作者")
@@ -120,7 +120,7 @@ namespace LibraryManageSystem
                 ds = DBOperate.readDB("select ISBN,BookName 书名,BookStyle 类型,Price 价格,Press 出版社,Author 作者,EnterTime 入库时间,IsBorrow 是否借出 from Books where BookName like '%" + b.Name + "%'");
                 dataGridView1.DataSource = ds.Tables[0];
             }
-           
+
         }
         private void btnSearchPic_Click(object sender, DataGridViewCellEventArgs e)
         {
@@ -138,13 +138,13 @@ namespace LibraryManageSystem
             b.Name = "%" + textBox2.Text.Trim() + "%";
             ds = DBOperate.readDB("select ISBN,BookName 书名,BookStyle 类型,Price 价格,Press 出版社,Author 作者,EnterTime 入库时间,IsBorrow 是否借出 from Books where BookName like '" + b.Name + "'");
             dataGridView2.DataSource = ds.Tables[0];
-            if(textBox2.Text.Trim()=="")
+            if (textBox2.Text.Trim() == "")
             {
                 MessageBox.Show("请先输入书名！");
             }
             else
             {
-                if (dataGridView2.RowCount == 0 )
+                if (dataGridView2.RowCount == 0)
                 {
                     MessageBox.Show("该书信息不存在或信息填写不完整，请重试！");
                 }
@@ -175,7 +175,7 @@ namespace LibraryManageSystem
             Book br = new Book();
             br.Name = bookName;
             DataSet ds = DBOperate.readDB("select * from Books where BookName ='" + br.Name + "'");
-            if (dataGridView2.RowCount>=1)
+            if (dataGridView2.RowCount >= 1)
             {
                 br.IsBorrow = ds.Tables[0].Rows[0][7].ToString();
                 if (br.IsBorrow == "是")
@@ -203,7 +203,7 @@ namespace LibraryManageSystem
             {
                 MessageBox.Show("请先输入书名后点击查询！");
             }
-            
+
         }
 
         private void btnReturn_Click(object sender, EventArgs e)//还书按钮事件
@@ -233,7 +233,7 @@ namespace LibraryManageSystem
                     MessageBox.Show("请选择你借阅的书");
                 }
             }
-            }
+        }
 
         private void btnPicReturn_Click(object sender, EventArgs e)//还书界面选择书的的图片事件
         {
@@ -295,4 +295,4 @@ namespace LibraryManageSystem
 
         }
     }
-    }
+}

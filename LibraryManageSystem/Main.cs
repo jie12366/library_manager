@@ -62,7 +62,7 @@ namespace LibraryManageSystem
             Users u=new Users();
             DataSet ds=null;
             u.Name= "%" + txtSearch.Text.Trim() + "%";
-            if (txtNumInfo.Text.Trim() == "")
+            if (txtSearch.Text == "")
             {
                 ds = DBOperate.readDB("select UserAccount 账号,UserName 姓名,UserMobile 手机号 from UserInfo where UserType='读者'");
                 dataGridView1.DataSource = ds.Tables[0];
@@ -619,6 +619,13 @@ namespace LibraryManageSystem
         private void label32_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
         }
     }
 }

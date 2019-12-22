@@ -79,7 +79,7 @@ namespace LibraryManageSystem
             {
                 // 点击winform右上关闭按钮
                 // 退出进程
-                this.Close();
+                System.Environment.Exit(0);
             }
             base.WndProc(ref msg);
         }

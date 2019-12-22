@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.btnAUp = new System.Windows.Forms.TabPage();
-            this.txtAMobile = new LibraryManageSystem.WatermarkTextBox();
-            this.txtAName = new LibraryManageSystem.WatermarkTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -118,10 +116,6 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.textPhone = new LibraryManageSystem.WatermarkTextBox();
-            this.txtName = new LibraryManageSystem.WatermarkTextBox();
-            this.txtPass = new LibraryManageSystem.WatermarkTextBox();
-            this.txtNum = new LibraryManageSystem.WatermarkTextBox();
             this.BtnClear = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -132,6 +126,13 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnUp = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.logout = new System.Windows.Forms.Button();
+            this.textPhone = new LibraryManageSystem.WatermarkTextBox();
+            this.txtName = new LibraryManageSystem.WatermarkTextBox();
+            this.txtPass = new LibraryManageSystem.WatermarkTextBox();
+            this.txtNum = new LibraryManageSystem.WatermarkTextBox();
+            this.txtAMobile = new LibraryManageSystem.WatermarkTextBox();
+            this.txtAName = new LibraryManageSystem.WatermarkTextBox();
             this.tabControl4.SuspendLayout();
             this.btnAUp.SuspendLayout();
             this.tabPage10.SuspendLayout();
@@ -193,22 +194,6 @@
             this.btnAUp.Text = "添加管理员";
             this.btnAUp.UseVisualStyleBackColor = true;
             this.btnAUp.Click += new System.EventHandler(this.btnAUp_Click);
-            // 
-            // txtAMobile
-            // 
-            this.txtAMobile.Location = new System.Drawing.Point(190, 155);
-            this.txtAMobile.Name = "txtAMobile";
-            this.txtAMobile.Size = new System.Drawing.Size(265, 28);
-            this.txtAMobile.TabIndex = 92;
-            this.txtAMobile.WatermarkText = "必须是11位数字";
-            // 
-            // txtAName
-            // 
-            this.txtAName.Location = new System.Drawing.Point(190, 89);
-            this.txtAName.Name = "txtAName";
-            this.txtAName.Size = new System.Drawing.Size(265, 28);
-            this.txtAName.TabIndex = 91;
-            this.txtAName.WatermarkText = "必须是两个汉字以上";
             // 
             // label17
             // 
@@ -883,6 +868,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.logout);
             this.tabPage4.Controls.Add(this.btnDele);
             this.tabPage4.Controls.Add(this.btnUpdate);
             this.tabPage4.Controls.Add(this.groupBox1);
@@ -1119,38 +1105,6 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Visible = false;
             // 
-            // textPhone
-            // 
-            this.textPhone.Location = new System.Drawing.Point(188, 288);
-            this.textPhone.Name = "textPhone";
-            this.textPhone.Size = new System.Drawing.Size(265, 28);
-            this.textPhone.TabIndex = 73;
-            this.textPhone.WatermarkText = "必须是11位数字";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(188, 242);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(265, 28);
-            this.txtName.TabIndex = 72;
-            this.txtName.WatermarkText = "必须是两个汉字以上";
-            // 
-            // txtPass
-            // 
-            this.txtPass.Location = new System.Drawing.Point(189, 158);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(265, 28);
-            this.txtPass.TabIndex = 71;
-            this.txtPass.WatermarkText = "字母和数字(4-10位)";
-            // 
-            // txtNum
-            // 
-            this.txtNum.Location = new System.Drawing.Point(189, 110);
-            this.txtNum.Name = "txtNum";
-            this.txtNum.Size = new System.Drawing.Size(265, 28);
-            this.txtNum.TabIndex = 70;
-            this.txtNum.WatermarkText = "字母和数字(6-14位),字母开头";
-            // 
             // BtnClear
             // 
             this.BtnClear.Location = new System.Drawing.Point(436, 410);
@@ -1253,6 +1207,64 @@
             this.tabControl1.Size = new System.Drawing.Size(1162, 646);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
+            // 
+            // logout
+            // 
+            this.logout.Location = new System.Drawing.Point(979, 514);
+            this.logout.Name = "logout";
+            this.logout.Size = new System.Drawing.Size(83, 31);
+            this.logout.TabIndex = 11;
+            this.logout.Text = "注销";
+            this.logout.UseVisualStyleBackColor = true;
+            this.logout.Click += new System.EventHandler(this.logout_Click);
+            // 
+            // textPhone
+            // 
+            this.textPhone.Location = new System.Drawing.Point(188, 288);
+            this.textPhone.Name = "textPhone";
+            this.textPhone.Size = new System.Drawing.Size(265, 28);
+            this.textPhone.TabIndex = 73;
+            this.textPhone.WatermarkText = "必须是11位数字";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(188, 242);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(265, 28);
+            this.txtName.TabIndex = 72;
+            this.txtName.WatermarkText = "必须是两个汉字以上";
+            // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(189, 158);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(265, 28);
+            this.txtPass.TabIndex = 71;
+            this.txtPass.WatermarkText = "字母和数字(4-10位)";
+            // 
+            // txtNum
+            // 
+            this.txtNum.Location = new System.Drawing.Point(189, 110);
+            this.txtNum.Name = "txtNum";
+            this.txtNum.Size = new System.Drawing.Size(265, 28);
+            this.txtNum.TabIndex = 70;
+            this.txtNum.WatermarkText = "字母和数字(6-14位),字母开头";
+            // 
+            // txtAMobile
+            // 
+            this.txtAMobile.Location = new System.Drawing.Point(190, 155);
+            this.txtAMobile.Name = "txtAMobile";
+            this.txtAMobile.Size = new System.Drawing.Size(265, 28);
+            this.txtAMobile.TabIndex = 92;
+            this.txtAMobile.WatermarkText = "必须是11位数字";
+            // 
+            // txtAName
+            // 
+            this.txtAName.Location = new System.Drawing.Point(190, 89);
+            this.txtAName.Name = "txtAName";
+            this.txtAName.Size = new System.Drawing.Size(265, 28);
+            this.txtAName.TabIndex = 91;
+            this.txtAName.WatermarkText = "必须是两个汉字以上";
             // 
             // Main
             // 
@@ -1411,6 +1423,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button logout;
     }
 }
 
